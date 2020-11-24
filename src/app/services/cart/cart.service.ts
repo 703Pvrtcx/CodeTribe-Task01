@@ -33,8 +33,9 @@ export class CartService {
     }
   ];
  
-  private cart = [];
- 
+  //private cart = [];
+  cartList = [];
+
   constructor() { }
  
   getProducts() {
@@ -42,11 +43,29 @@ export class CartService {
   }
  
   getCart() {
-    return this.cart;
+   // return this.cart;
   }
  
   addProduct(product) {
-    this.cart.push(product);
+    //this.cart.push(product);
   }
+  // Zano
+  addToCart(item){
+    this.cartList.push({name: item.name, colour: item.colour, age: item.age});
+  }
+  removeFromCart(item){
  
+    var index = this.cartList.indexOf(item);
+    if(index !== -1){
+      this.cartList.splice(index,1);
+    }
+    return this.cartList;
+  }
+  getCartList() {
+    return this.cartList;
+  }
+ setCart(cartlist){
+  this.cartList = cartlist;
+ }
+
 }

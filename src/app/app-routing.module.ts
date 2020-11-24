@@ -11,12 +11,20 @@ const routes: Routes = [
   //   path: 'folder/:id',
   //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   // },
+  // {
+  //   path: '',
+  //   redirectTo: 'folder',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'folder',
+  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  // },
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
- 
   {
     path: 'registration',
     loadChildren: () => import('./pages/sign-in/registration/registration.module').then( m => m.RegistrationPageModule)
@@ -40,7 +48,16 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/cart/home/home.module').then( m => m.HomePageModule)
-  }
+  },
+  {
+    path: 'cartlist',
+    loadChildren: () => import('./pages/cart/cartlist/cartlist.module').then( m => m.CartlistPageModule)
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./pages/cart/details/details.module').then( m => m.DetailsPageModule)
+  },
+
 ];
 
 
