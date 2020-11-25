@@ -20,11 +20,6 @@
 
 <ion-content>
     <div *ngIf="cartList.length > 0">
-        <div *ngFor="let cart of cartList">
-            <ion-button fill="fill" (click)="delete(cart)">
-                <ion-icon name="trash"></ion-icon>
-            </ion-button>
-        </div>
         <ion-card *ngFor="let cart of cartList">
             <ion-card-header>
                 <ion-card-title>{{cart.name }}</ion-card-title>
@@ -32,7 +27,12 @@
             </ion-card-header>
 
             <ion-card-content>
-                {{cart.age}}
+                <ion-buttons style="float: right;" slot="end">
+                    <ion-button fill="full" (click)="delete(cart)">
+                        <ion-icon name="trash"></ion-icon>
+                    </ion-button>
+                </ion-buttons>
+
             </ion-card-content>
         </ion-card>
     </div>

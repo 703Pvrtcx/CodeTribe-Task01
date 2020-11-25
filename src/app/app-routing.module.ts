@@ -56,13 +56,16 @@ const routes: Routes = [
   {
     path: 'detail',
     loadChildren: () => import('./pages/cart/details/details.module').then( m => m.DetailsPageModule)
+  },  {
+    path: 'court-count',
+    loadChildren: () => import('./pages/court-count/court-count.module').then( m => m.CourtCountPageModule)
+  },
+  {
+    path: 'court-statistics',
+    loadChildren: () => import('./pages/court-statistics/court-statistics.module').then( m => m.CourtStatisticsPageModule)
   },
 
 ];
-
-
-
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })

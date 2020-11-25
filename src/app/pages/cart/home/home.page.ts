@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
  
   ngOnInit() {
     this.items = this.cartService.getProducts();
-    this.cart = this.cartService.getCart();
+    //this.cart = this.cartService.getCart();
   }
  
   addToCart(product) {
