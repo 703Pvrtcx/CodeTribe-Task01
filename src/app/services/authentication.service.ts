@@ -84,7 +84,7 @@ export class AuthenticationService {
     
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+        this.router.navigate(['tabs/testing']);
         })
       this.SetUserData(result.user);
     }).catch((error) => {
