@@ -12,7 +12,12 @@ export class HomePage implements OnInit {
  
   cart = [];
   items = [];
+  
   pizza;
+  burger;
+  desserts;
+  snacks;
+  drinks;
 
   sliderConfig = {
     slidesPerView: 1.6,
@@ -27,8 +32,33 @@ export class HomePage implements OnInit {
     this.items = this.cartService.getProducts();
     this.cart = this.cartService.getCart();
     this.pizza = this.cartService.getPizza();
+    this.burger = this.cartService.getBurgers();
+    this.desserts = this.cartService.getDesserts();
+    this.snacks = this.cartService.getSnacks();
+    this.drinks = this.cartService.getDrinks();
   }
- 
+  getCategory(category){
+    switch (category) {
+      case 'Pizza':
+        return this.pizza;
+        break;
+        case 'Burger':
+          return this.burger;
+          break;
+          case 'Desserts':
+        return this.desserts;
+        break;
+        case 'Snacks':
+        return this.snacks;
+        break;
+        case 'Drinks':
+        return this.drinks;
+        break;
+      default:
+        break;
+    }
+  }
+
   addToCart(product) {
     this.cartService.addProduct(product);
   }
@@ -36,4 +66,5 @@ export class HomePage implements OnInit {
   openCart() {
     this.router.navigate(['cart']);
   }
+
 }

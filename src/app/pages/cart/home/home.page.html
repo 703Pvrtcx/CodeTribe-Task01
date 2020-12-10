@@ -16,10 +16,30 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
+<div>
+    <ion-segment scrollable (ionChange)="segmentChanged($event)" color="primary">
+        <ion-segment-button value="Pizza" [checked]="selectedSegment === 'pizza'">
+            <ion-label>Pizza</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Burgers" [checked]="selectedSegment === 'burgers'">
+            <ion-label>Burgers</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Snacks" [checked]="selectedSegment === 'snacks'">
+            <ion-label>Snacks</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Drinks" [checked]="selectedSegment === 'drinks'">
+            <ion-label>Drinks</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Desserts" [checked]="selectedSegment === 'desserts'">
+            <ion-label>Desserts</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+</div>
+
 
 <ion-content>
     <ion-content class="flex-container">
-        <ion-card *ngFor="let product of pizza">
+        <ion-card *ngFor="let product of getCategory(selectedSegment)">
             <ion-card-content>
                 <b> {{ product.item }}: {{ product.name }}</b><b style="float: right;" color="primary">{{  product.price | currency}}</b>
                 <hr>
