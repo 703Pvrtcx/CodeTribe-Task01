@@ -46,6 +46,7 @@
 // }
  import { PERSON_LIST } from 'src/app/mocks/person.mock';
  import { BookService } from 'src/app/services/user/book.service';
+ import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ModalController } from '@ionic/angular';
@@ -62,7 +63,7 @@ export class HomePage {
   cart = [];
   products = [];
 
-     bookList= []; 
+  bookList= []; 
   personList = PERSON_LIST;
 
   cartItemCount: BehaviorSubject<number>;
@@ -74,11 +75,11 @@ export class HomePage {
   constructor(private cartService: CartService,private router: Router, private modalCtrl: ModalController) {
   }
   ngOnInit(){
-  //  this.products = this.cartService.getProducts();
     this.cart = this.cartService.getCart();
     this.cartItemCount = this.cartService.getCartItemCount();
     this.viewProducts =  this.cartService.getCategory(this.selectedCategory);
   }
+  
   addToCart(product) {
     this.cartService.addProduct(product);
     this.animateCSS('Added');

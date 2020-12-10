@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>download</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="flex-container">
+    <ion-card *ngFor="let product of pizza;">
+        <ion-card-content>
+            <b> {{ product.item }}: {{ product.name }}</b><b style="float: right;" color="primary">{{  product.price | currency}}</b>
+            <hr>
+            <ion-card>
+                <img class="pic" style="box-sizing: content-box; " mat-card-image [src]="product.image" alt="A picture of {{product.name}}" />
+                <b>Description: {{ product.description }}</b>
+            </ion-card>
+        </ion-card-content>
+        <button mat-raised-button color="primary" style="float: right;" (click)="addToCart(product)">Add To Cart
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+    </ion-card>
+</ion-content>

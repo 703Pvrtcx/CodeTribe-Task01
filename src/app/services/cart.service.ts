@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Product } from './../../app/models/product';
 import { BehaviorSubject } from 'rxjs';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+ 
   data: Product[] = [
     { id: 1,
       name: 'Big Mac',
@@ -46,7 +46,7 @@ export class CartService {
   ]
   pizzaProducts = [
     {id: 1, imgPath: 'https://img1.wsimg.com/isteam/stock/2999/:/', price: 12.50 , name: 'Cheese burst pizza', qty: 1},
-    {id: 2,imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTeN9ZmxOgfpz2fNKoay9gqh5sgKCkpSzbjEYbNuby5dhnJV-_C', price: 15 , name: 'Tomato corn pizza', qty: 1},
+    {id: 2, imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTeN9ZmxOgfpz2fNKoay9gqh5sgKCkpSzbjEYbNuby5dhnJV-_C', price: 15 , name: 'Tomato corn pizza', qty: 1},
     {id: 3, imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS2VIH8gqiZXtM5XbkSKefPMidImjnfSku_imKBCEaOB8Xxhdba', price: 5.90 , name: 'Cheesy smoke paper pizza', qty: 1},
     {id: 4,imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR7x6T2N0tJvT5QUkVL4ebbU-0CLxlpFGtT9kHwVttKu8odx3x5', price: 2.5 , name: 'Mashroom magic pizza', qty: 1},
     {id: 5,imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSH2laiUvjvONmyzXwco_fMEuulEB2vFhX1tCUcjwb02NU5d4gC', price: 16.2 , name: 'Corn paper pizza', qty: 1},
@@ -88,13 +88,21 @@ export class CartService {
     {id: 33,imgPath: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSD-X5xnvAQXT_T59BU1_acOxlUo3A1TNW23V6Y7KaCPYWWLr5A', price: 3.5, name: 'Kokam shrabat', qty: 1}
   ];
 
-
+  items = [];
   private cart = []
   private cartItemCount = new BehaviorSubject(0);
   
-  constructor() { }
+  constructor( private firestore: AngularFirestore) {
+   
+   }
   getProducts(){
     return this.data;
+  }
+  getProductByCategory(){
+    this.firestore.collection<any>("Pizza").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+      this.items = storeItems;
+      console.log(this.items);
+   })
   }
   getCategory(category: string){
     switch (category) {

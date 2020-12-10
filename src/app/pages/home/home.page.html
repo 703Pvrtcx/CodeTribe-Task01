@@ -17,38 +17,38 @@
     </ion-toolbar>
 </ion-header> -->
 <ion-header [translucent]="true">
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-menu-button>
-              <ion-icon name="apps"></ion-icon>
-          </ion-menu-button>
-      </ion-buttons>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button>
+                <ion-icon name="apps"></ion-icon>
+            </ion-menu-button>
+        </ion-buttons>
 
 
-      <ion-title>
-          Delivery Service App
-      </ion-title>
+        <ion-title>
+            Delivery Service App
+        </ion-title>
 
-      <ion-button color="dark" size="small" slot="end" (click)="openCart()" #cart>
+        <ion-button color="dark" size="small" slot="end" (click)="openCart()" #cart>
 
-          {{ cartItemCount | async }}
-          <ion-icon name="cart" slot="end"></ion-icon>
-      </ion-button>
-  </ion-toolbar>
+            {{ cartItemCount | async }}
+            <ion-icon name="cart" slot="end"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-segment scrollable [value]="selectedCategory" (ionChange)="onCategoryTabChange($event)">
-  <ion-segment-button *ngFor="let category of categories" [value]="category">
-      {{category}}
-  </ion-segment-button>
+    <ion-segment-button *ngFor="let category of categories" [value]="category">
+        {{category}}
+    </ion-segment-button>
 </ion-segment>
 
 <ion-content>
-  <ion-card *ngFor="let product of viewProducts">
-      <ion-card-content class="no-padding" (click)="onProductClick(product)">
-          <img [src]="product.imgPath" height="200px" width="100%" alt="image">
-      </ion-card-content>
-      <!-- <ion-card-header>
+    <ion-card *ngFor="let product of viewProducts">
+        <ion-card-content class="no-padding" (click)="onProductClick(product)">
+            <img [src]="product.imgPath" height="200px" width="100%" alt="image">
+        </ion-card-content>
+        <!-- <ion-card-header>
           <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
           <ion-card-title>{{product.price | currency: 'R' }}</ion-card-title>
           <ion-button color="dark" size="small" (click)="addToCart(product)">
@@ -56,23 +56,23 @@
               <ion-icon name="cart" slot="end"></ion-icon>
           </ion-button>
       </ion-card-header> -->
-      <ion-grid>
-          <ion-row>
-              <ion-col size="6">
-                  {{product.name}}
-              </ion-col>
-              <ion-col size="3" class="ion-text-center">
-                  <ion-card-title> {{product.price | currency: 'R' }}</ion-card-title>
-              </ion-col>
-              <ion-col size="3">
-                  <ion-button color="primary" size="small" (click)="addToCart(product)">
-                      +
-                      <ion-icon name="cart" slot="end"></ion-icon>
-                  </ion-button>
-              </ion-col>
-          </ion-row>
-      </ion-grid>
-  </ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6">
+                    {{product.name}}
+                </ion-col>
+                <ion-col size="3" class="ion-text-center">
+                    <ion-card-title> {{product.price | currency: 'R' }}</ion-card-title>
+                </ion-col>
+                <ion-col size="3">
+                    <ion-button color="primary" size="small" (click)="addToCart(product)">
+                        +
+                        <ion-icon name="cart" slot="end"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
 </ion-content>
 
 

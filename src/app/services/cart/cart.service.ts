@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
  
 @Injectable({
   providedIn: 'root'
@@ -33,12 +34,55 @@ export class CartService {
     }
   ];
 
-  
+  pizza;
+  burgers;
+  desserts;
+  snacks;
+  drinks;
+
+  myData= [];
  
   private cart = [];
  
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
  
+  getPizza(){
+    this.firestore.collection<any>("Pizza").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+        this.pizza = storeItems;
+        console.log(this.pizza);
+    })
+    return this.pizza;
+  }
+  getBurgers(){
+    this.firestore.collection<any>("Burgers").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+      this.burgers = storeItems;
+      console.log(this.burgers);
+    })
+  }
+  getDesserts(){
+    this.firestore.collection<any>("Desserts").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+      this.desserts = storeItems;
+      console.log(this.desserts);
+      })
+  }
+  getDrinks(){
+    this.firestore.collection<any>("Drinks").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+      this.drinks = storeItems;
+      console.log(this.drinks);
+      })
+  }
+  getSnacks(){
+    this.firestore.collection<any>("Snacks").valueChanges({idField: 'id'}).subscribe(storeItems =>{
+      this.snacks = storeItems;
+      console.log(this.snacks);
+      })
+      
+  }
+  getData(){
+    this.myData.push(this.pizza,this.burgers,this.desserts,this.snacks,this.drinks);
+    return this.myData;
+  }
+
   getProducts() {
     return this.data;
   }

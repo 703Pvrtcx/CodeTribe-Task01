@@ -12,7 +12,8 @@ export class HomePage implements OnInit {
  
   cart = [];
   items = [];
- 
+  pizza;
+
   sliderConfig = {
     slidesPerView: 1.6,
     spaceBetween: 10,
@@ -25,6 +26,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.items = this.cartService.getProducts();
     this.cart = this.cartService.getCart();
+    this.pizza = this.cartService.getPizza();
   }
  
   addToCart(product) {

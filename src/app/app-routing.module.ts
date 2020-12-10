@@ -43,6 +43,14 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'upload',
+        loadChildren: () => import('./pages/Admin/upload/upload.module').then( m => m.UploadPageModule)
+      },
+      {
+        path: 'download',
+        loadChildren: () => import('./pages/Admin/download/download.module').then( m => m.DownloadPageModule)
+      },
+      {
         path: 'testing', //Probably a duplicate
         loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
       },
@@ -64,6 +72,15 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'upload',
+    loadChildren: () => import('./pages/Admin/upload/upload.module').then( m => m.UploadPageModule)
+  },
+  {
+    path: 'download',
+    loadChildren: () => import('./pages/Admin/download/download.module').then( m => m.DownloadPageModule)
+  },
+
 
 ];
 

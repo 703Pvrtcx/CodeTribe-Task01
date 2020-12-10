@@ -8,7 +8,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -16,7 +15,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import  auth  from 'firebase/app';
 import { AuthenticationService } from './services/authentication.service';
-import { CartService } from './services/cart/cart.service'
+import { CartService } from './services/cart/cart.service';
+import { DownloadService } from 'src/app/services/Admin/download.service';
+import { UploadService } from 'src/app/services/Admin/upload.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,7 +33,7 @@ import { CartService } from './services/cart/cart.service'
   providers: [
     StatusBar,
     SplashScreen,
-    AngularFirestoreModule, AuthenticationService,  CartService,
+    AngularFirestoreModule, AuthenticationService,  CartService,DownloadService,UploadService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
