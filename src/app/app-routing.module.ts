@@ -1,91 +1,96 @@
+import { TabsPage } from './page/menu/tabs/tabs.page';
+import { SidemenuPage } from './page/menu/sidemenu/sidemenu.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './pages/menu/tabs/tabs.page';
+
 const routes: Routes = [
+  
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'sidemenu/tabs/home',
     pathMatch: 'full'
   },
   {
-    path: 'registration',
-    loadChildren: () => import('./pages/sign-in/registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'verify-email',
-    loadChildren: () => import('./pages/sign-in/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/sign-in/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/sign-in/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'cart',
-    loadChildren: () => import('./pages/cart/cart/cart.module').then( m => m.CartPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/cart/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./pages/menu/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
-    path: 'tabs', component: TabsPage, children: [
+    path: 'sidemenu', component: SidemenuPage, children: [
       {
-        path: '',
-        redirectTo: 'tabs/home',
-        pathMatch: 'full'
-      },
-      {
-        path: 'upload',
-        loadChildren: () => import('./pages/Admin/upload/upload.module').then( m => m.UploadPageModule)
-      },
-      {
-        path: 'download',
-        loadChildren: () => import('./pages/Admin/download/download.module').then( m => m.DownloadPageModule)
-      },
-      {
-        path: 'testing', //Probably a duplicate
-        loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-      },
-      {
-        path: 'home',
-        loadChildren: () => import('./pages/cart/home/home.module').then( m => m.HomePageModule)
-      },
-      {
-        path: 'cart',
-        loadChildren: () => import('./pages/cart/cart/cart.module').then( m => m.CartPageModule)
-      },
-      {
-        path: 'profile',
-        loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule)
-      },
-      {
-        path: 'maps',
-        loadChildren: () => import('./pages/maps/maps.module').then( m => m.MapsPageModule)
+        path: 'tabs',
+        component: TabsPage,
+        children: [
+          {
+            path: 'home',
+            loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+          },
+          {
+            path: '',
+            redirectTo: 'home',
+            pathMatch: 'full'
+          },
+          {
+            path: 'profile',
+            loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
+          },
+          {
+            path: 'profile-tab',
+            loadChildren: () => import('./page/profile-tab/profile-tab.module').then( m => m.ProfileTabPageModule)
+          },
+          {
+            path: 'contact',
+            loadChildren: () => import('./page/contact/contact.module').then( m => m.ContactPageModule)
+          },
+          {
+            path: 'leaflet',
+            loadChildren: () => import('./page/Map-Location/leaflet/leaflet.module').then( m => m.LeafletPageModule)
+          },
+          {
+            path: 'maps',
+            loadChildren: () => import('./page/Map-Location/maps/maps.module').then( m => m.MapsPageModule)
+          },
+          {
+            path: 'cartview',
+            loadChildren: () => import('./page/cartview/cartview.module').then( m => m.CartviewPageModule)
+          },
+          {
+            path: 'payments',
+            loadChildren: () => import('./page/payments/payments.module').then( m => m.PaymentsPageModule)
+          },
+          {
+            path: 'login',
+            loadChildren: () => import('./page/sign-in/login/login-routing.module').then( m => m.LoginPageRoutingModule)
+          },
+          {
+            path: 'logout',
+            loadChildren: () => import('./page/sign-in/login/login-routing.module').then( m => m.LoginPageRoutingModule)
+          },
+        ]
       },
     ]
   },
   {
-    path: 'upload',
-    loadChildren: () => import('./pages/Admin/upload/upload.module').then( m => m.UploadPageModule)
+    path: 'login',
+    loadChildren: () => import('./page/sign-in/login/login-routing.module').then( m => m.LoginPageRoutingModule)
   },
   {
-    path: 'download',
-    loadChildren: () => import('./pages/Admin/download/download.module').then( m => m.DownloadPageModule)
+    path: 'logout',
+    loadChildren: () => import('./page/sign-in/login/login-routing.module').then( m => m.LoginPageRoutingModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./page/sign-in/registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'cartview',
+    loadChildren: () => import('./page/cartview/cartview.module').then( m => m.CartviewPageModule)
+  },
+  {
+    path: 'payments',
+    loadChildren: () => import('./page/payments/payments.module').then( m => m.PaymentsPageModule)
+  },
+  {
+    path: 'view-product',
+    loadChildren: () => import('./page/view-product/view-product.module').then( m => m.ViewProductPageModule)
   },
 
-
 ];
-
-
-
 
 @NgModule({
   imports: [
@@ -93,4 +98,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
